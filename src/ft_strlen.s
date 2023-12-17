@@ -4,6 +4,8 @@ ft_strlen:
 	push	rbp
 	mov	rbp,	rsp
 	mov	rax,	0
+	cmp	rdi,	0
+	je	return
 check_loop:
 	cmp	[rdi+rax],	byte 0
 	je	return

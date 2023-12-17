@@ -117,7 +117,7 @@ int main()
 	str = NULL;
 
 	printf("before dup(address: %p)\n", str);
-	str = strdup("Salut");
+	str = ft_strdup("Salut");
 	printf("after dup(address: %p, value: %s)\n", str, str);
 	free(str);
 
