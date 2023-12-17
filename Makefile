@@ -6,7 +6,8 @@ CC	=	nasm
 
 LIB	=	ar rcs
 
-SRC	=	ft_write.s
+SRC	=	ft_write.s \
+		ft_read.s
 
 TARGET	=	elf64
 
