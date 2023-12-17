@@ -43,9 +43,16 @@ int main()
 	printf("buffer read: %s return value: %d errno: %d\n\nft_read:\n", buffer, a, errno);
 	memset(buffer, 0, 16);
 	a = ft_read(0, buffer, 15);
-	printf("buffer read: %s return value: %d errno: %d\n", buffer, a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\nstrlen:\n", buffer, a, errno);
 	memset(buffer, 0, 16);
 
 	close(fd);
+
+	printf("empty string return value: %ld\n\nft_strlen:\n", strlen(""));
+	printf("empty string return value: %ld\n\nstrlen:\n", ft_strlen(""));
+
+	printf("string: Salut return value: %ld\n\nft_strlen:\n", strlen("Salut"));
+	printf("string: Salut return value: %ld\n", ft_strlen("Salut"));
+
 	return 0;
 }
