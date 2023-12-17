@@ -6,53 +6,64 @@
 
 int main()
 {
-	printf("write:\n");
+	printf("\033[0m\033[32mwrite:\033[0m\033[37m\n");
 	int	a = write(1, "Salut\n", 6);
-	printf("return value: %d errno: %d\n\nft_write:\n", a, errno);
+	printf("return value: %d errno: %d\n\n\033[0m\033[32mft_write:\033[0m\033[37m\n", a, errno);
 	a = ft_write(1, "Salut\n", 6);
-	printf("return value: %d errno: %d\n\nwrite:\n", a, errno);
+	printf("return value: %d errno: %d\n\n\033[0m\033[32mwrite:\033[0m\033[37m\n", a, errno);
 
 	a = write(42, "Salut\n", 6);
-	printf("return value: %d errno: %d\n\nft_write:\n", a, errno);
+	printf("return value: %d errno: %d\n\n\033[0m\033[32mft_write:\033[0m\033[37m\n", a, errno);
 	a = ft_write(42, "Salut\n", 6);
-	printf("return value: %d errno: %d\n\nread:\n", a, errno);
+	printf("return value: %d errno: %d\n\n\033[0m\033[32mread:\033[0m\033[37m\n", a, errno);
 
 	char	buffer[16];
 
 	int	fd = open("Makefile", O_RDONLY);
 
 	a = read(fd, buffer, 15);
-	printf("buffer read: %s return value: %d errno: %d\n\nft_read:\n", buffer, a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mft_read:\033[0m\033[37m\n", buffer, a, errno);
 	memset(buffer, 0, 16);
 
 	close(fd);
 	fd = open("Makefile", O_RDONLY);
 
 	a = ft_read(fd, buffer, 15);
-	printf("buffer read: %s return value: %d errno: %d\n\nread:\n", buffer, a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mread:\033[0m\033[37m\n", buffer, a, errno);
 	memset(buffer, 0, 16);
 
 	a = read(42, buffer, 15);
-	printf("buffer read: %s return value: %d errno: %d\n\nft_read:\n", buffer, a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mft_read:\033[0m\033[37m\n", buffer, a, errno);
 	memset(buffer, 0, 16);
 	a = ft_read(42, buffer, 15);
-	printf("buffer read: %s return value: %d errno: %d\n\nread:\n", buffer, a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mread:\033[0m\033[37m\n", buffer, a, errno);
 	memset(buffer, 0, 16);
 
 	a = read(0, buffer, 15);
-	printf("buffer read: %s return value: %d errno: %d\n\nft_read:\n", buffer, a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mft_read:\033[0m\033[37m\n", buffer, a, errno);
 	memset(buffer, 0, 16);
 	a = ft_read(0, buffer, 15);
-	printf("buffer read: %s return value: %d errno: %d\n\nstrlen:\n", buffer, a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mstrlen:\033[0m\033[37m\n", buffer, a, errno);
 	memset(buffer, 0, 16);
 
 	close(fd);
 
-	printf("empty string return value: %ld\n\nft_strlen:\n", strlen(""));
-	printf("empty string return value: %ld\n\nstrlen:\n", ft_strlen(""));
+	printf("empty string return value: %ld\n\n\033[0m\033[32mft_strlen:\033[0m\033[37m\n", strlen(""));
+	printf("empty string return value: %ld\n\n\033[0m\033[32mstrlen:\033[0m\033[37m\n", ft_strlen(""));
 
-	printf("string: Salut return value: %ld\n\nft_strlen:\n", strlen("Salut"));
-	printf("string: Salut return value: %ld\n", ft_strlen("Salut"));
+	printf("string: Salut return value: %ld\n\n\033[0m\033[32mft_strlen:\033[0m\033[37m\n", strlen("Salut"));
+	printf("string: Salut return value: %ld\n\n\033[0m\033[32mstrcpy:\033[0m\033[37m\n", ft_strlen("Salut"));
+
+	char	ret1[15] = "Salut";
+	char	ret2[15] = "Salut";
+
+	printf("before copy(address: %p, string: %s)\n", ret1, ret1);
+	strcpy(ret1, "Hi");
+	printf("after copy(address: %p, string: %s)\n\n\033[0m\033[32mft_strcpy:\033[0m\033[37m\n", ret1, ret1);
+
+	printf("before copy(address: %p, string: %s)\n", ret2, ret2);
+	ft_strcpy(ret2, "Hi");
+	printf("after copy(address: %p, string: %s)\n", ret2, ret2);
 
 	return 0;
 }
