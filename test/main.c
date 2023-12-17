@@ -63,7 +63,39 @@ int main()
 
 	printf("before copy(address: %p, string: %s)\n", ret2, ret2);
 	ft_strcpy(ret2, "Hi");
-	printf("after copy(address: %p, string: %s)\n", ret2, ret2);
+	printf("after copy(address: %p, string: %s)\n\n\033[0m\033[32mstrcmp:\033[0m\033[37m\n", ret2, ret2);
+
+	printf("s1: \"dsdsf\", s2: \"\" res: %d\n\n\033[0m\033[32mft_strcmp:\033[0m\033[37m\n", strcmp("dsdsf", ""));
+
+	printf("s1: \"dsdsf\", s2: \"\" res: %d\n\n\033[0m\033[32mstrcmp:\033[0m\033[37m\n", ft_strcmp("dsdsf", ""));
+
+	printf("s1: \"\", s2: \"dsdsf\" res: %d\n\n\033[0m\033[32mft_strcmp:\033[0m\033[37m\n", strcmp("", "dsdsf"));
+
+	printf("s1: \"\", s2: \"dsdsf\" res: %d\n\n\033[0m\033[32mstrcmp:\033[0m\033[37m\n", ft_strcmp("", "dsdsf"));
+
+	printf("s1: \"dsdsf\", s2: \"ds\" res: %d\n\n\033[0m\033[32mft_strcmp:\033[0m\033[37m\n", strcmp("dsdsf", "ds"));
+
+	printf("s1: \"dsdsf\", s2: \"ds\" res: %d\n\n\033[0m\033[32mstrcmp:\033[0m\033[37m\n", ft_strcmp("dsdsf", "ds"));
+
+	printf("s1: \"ds\", s2: \"dsdsf\" res: %d\n\n\033[0m\033[32mft_strcmp:\033[0m\033[37m\n", strcmp("ds", "dsdsf"));
+
+	printf("s1: \"ds\", s2: \"dsdsf\" res: %d\n\n\033[0m\033[32mstrcmp:\033[0m\033[37m\n", ft_strcmp("ds", "dsdsf"));
+
+	printf("s1: \"dsdsf\", s2: \"abcdefghi\" res: %d\n\n\033[0m\033[32mft_strcmp:\033[0m\033[37m\n", strcmp("dsdsf", "abcdefghi"));
+
+	printf("s1: \"dsdsf\", s2: \"abcdefghi\" res: %d\n\n\033[0m\033[32mstrcmp:\033[0m\033[37m\n", ft_strcmp("dsdsf", "abcdefghi"));
+
+	printf("s1: \"abcdefghi\", s2: \"dsdsf\" res: %d\n\n\033[0m\033[32mft_strcmp:\033[0m\033[37m\n", strcmp("abcdefghi", "dsdsf"));
+
+	printf("s1: \"abcdefghi\", s2: \"dsdsf\" res: %d\n\n\033[0m\033[32mstrcmp:\033[0m\033[37m\n", ft_strcmp("abcdefghi", "dsdsf"));
+
+	printf("s1: \"\", s2: \"\" res: %d\n\n\033[0m\033[32mft_strcmp:\033[0m\033[37m\n", strcmp("", ""));
+
+	printf("s1: \"\", s2: \"\" res: %d\n\n\033[0m\033[32mstrcmp:\033[0m\033[37m\n", ft_strcmp("", ""));
+
+	printf("s1: \"abcdefghi\", s2: \"abcdefghi\" res: %d\n\n\033[0m\033[32mft_strcmp:\033[0m\033[37m\n", strcmp("abcdefghi", "abcdefghi"));
+
+	printf("s1: \"dsdsf\", s2: \"abcdefghi\" res: %d\n", ft_strcmp("abcdefghi", "abcdefghi"));
 
 	return 0;
 }
