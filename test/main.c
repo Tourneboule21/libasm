@@ -3,19 +3,24 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdlib.h>
 
 int main()
 {
 	printf("\033[0m\033[32mwrite:\033[0m\033[37m\n");
 	int	a = write(1, "Salut\n", 6);
 	printf("return value: %d errno: %d\n\n\033[0m\033[32mft_write:\033[0m\033[37m\n", a, errno);
+	errno = 0;
 	a = ft_write(1, "Salut\n", 6);
 	printf("return value: %d errno: %d\n\n\033[0m\033[32mwrite:\033[0m\033[37m\n", a, errno);
+	errno = 0;
 
 	a = write(42, "Salut\n", 6);
 	printf("return value: %d errno: %d\n\n\033[0m\033[32mft_write:\033[0m\033[37m\n", a, errno);
+	errno = 0;
 	a = ft_write(42, "Salut\n", 6);
 	printf("return value: %d errno: %d\n\n\033[0m\033[32mread:\033[0m\033[37m\n", a, errno);
+	errno = 0;
 
 	char	buffer[16];
 
@@ -23,6 +28,7 @@ int main()
 
 	a = read(fd, buffer, 15);
 	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mft_read:\033[0m\033[37m\n", buffer, a, errno);
+	errno = 0;
 	memset(buffer, 0, 16);
 
 	close(fd);
@@ -30,20 +36,25 @@ int main()
 
 	a = ft_read(fd, buffer, 15);
 	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mread:\033[0m\033[37m\n", buffer, a, errno);
+	errno = 0;
 	memset(buffer, 0, 16);
 
-	a = read(42, buffer, 15);
-	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mft_read:\033[0m\033[37m\n", buffer, a, errno);
-	memset(buffer, 0, 16);
 	a = ft_read(42, buffer, 15);
 	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mread:\033[0m\033[37m\n", buffer, a, errno);
+	errno = 0;
+	memset(buffer, 0, 16);
+	a = read(42, buffer, 15);
+	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mft_read:\033[0m\033[37m\n", buffer, a, errno);
+	errno = 0;
 	memset(buffer, 0, 16);
 
 	a = read(0, buffer, 15);
 	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mft_read:\033[0m\033[37m\n", buffer, a, errno);
+	errno = 0;
 	memset(buffer, 0, 16);
 	a = ft_read(0, buffer, 15);
 	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mstrlen:\033[0m\033[37m\n", buffer, a, errno);
+	errno = 0;
 	memset(buffer, 0, 16);
 
 	close(fd);
@@ -95,7 +106,20 @@ int main()
 
 	printf("s1: \"abcdefghi\", s2: \"abcdefghi\" res: %d\n\n\033[0m\033[32mft_strcmp:\033[0m\033[37m\n", strcmp("abcdefghi", "abcdefghi"));
 
-	printf("s1: \"dsdsf\", s2: \"abcdefghi\" res: %d\n", ft_strcmp("abcdefghi", "abcdefghi"));
+	printf("s1: \"dsdsf\", s2: \"abcdefghi\" res: %d\n\n\033[0m\033[32mstrdup:\033[0m\033[37m\n", ft_strcmp("abcdefghi", "abcdefghi"));
+
+	char	*str = NULL;
+
+	printf("before dup(address: %p)\n", str);
+	str = strdup("Salut");
+	printf("after dup(address: %p, value: %s)\n\n\033[0m\033[32mft_strdup:\033[0m\033[37m\n", str, str);
+	free(str);
+	str = NULL;
+
+	printf("before dup(address: %p)\n", str);
+	str = strdup("Salut");
+	printf("after dup(address: %p, value: %s)\n", str, str);
+	free(str);
 
 	return 0;
 }

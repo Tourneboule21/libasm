@@ -3,16 +3,20 @@ global	ft_strcpy
 ft_strcpy:
 	push	rbp
 	mov	rbp,	rsp
-	mov	rax,	rdi
-	mov	rbx,	0
+	mov	rcx,	0
+
 check_loop:
-	cmp	[rsi+rbx],	byte 0
-	mov	r12,	[rsi+rbx]
-	mov	[rax+rbx],	r12
-	je	end_loop
-	inc	rbx
+	cmp	[rsi+rcx],	byte 0
+	je	return
+	mov	rdx,	[rsi+rcx]
+	mov	[rdi+rcx],	rdx
+	inc	rcx
 	jmp	check_loop
-end_loop:
+
+
+return:
+	mov	[rdi+rcx],	byte 0
+	mov	rax,	rdi
 	mov	rsp,	rbp
 	pop	rbp
 	ret

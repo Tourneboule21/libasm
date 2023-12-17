@@ -1,4 +1,4 @@
-.PHONY: clean fclean re test test_fclean
+.PHONY: clean fclean re test test_fclean all
 
 NAME	= libasm.a
 
@@ -10,7 +10,8 @@ SRC	=	ft_write.s \
 		ft_read.s \
 		ft_strlen.s \
 		ft_strcpy.s \
-		ft_strcmp.s
+		ft_strcmp.s \
+		ft_strdup.s
 
 TARGET	=	elf64
 
@@ -37,6 +38,8 @@ fclean: clean
 	make fclean -C $(TEST_DIR)
 
 re: fclean $(NAME)
+
+all: $(NAME) test
 
 test:
 	make -C $(TEST_DIR)

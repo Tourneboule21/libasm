@@ -6,10 +6,10 @@ ft_strlen:
 	mov	rax,	0
 check_loop:
 	cmp	[rdi+rax],	byte 0
-	je	end_loop
+	je	return
 	inc	rax
 	jmp	check_loop
-end_loop:
+return:
 	mov	rsp,	rbp
 	pop	rbp
 	ret 

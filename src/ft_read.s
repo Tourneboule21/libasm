@@ -8,11 +8,12 @@ ft_read:
 	syscall
 	cmp	rax,	0
 	jge	no_error
-	mov	rbx,	rax
-	xor	rbx,	0xffffffffffffffff
-	inc	rbx
+	neg	rax
+	push	rax
 	call	__errno_location wrt ..plt
-	mov	[rax],	rbx
+	mov	rbx,	rax
+	pop	rax
+	mov	[rbx],	dword rax
 	mov	rax,	-1
 no_error:
 	mov	rsp,	rbp
