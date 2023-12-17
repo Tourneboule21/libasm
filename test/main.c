@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <string.h>
 
 int main()
 {
@@ -22,17 +23,28 @@ int main()
 
 	a = read(fd, buffer, 15);
 	printf("buffer read: %s return value: %d errno: %d\n\nft_read:\n", buffer, a, errno);
+	memset(buffer, 0, 16);
 
 	close(fd);
 	fd = open("Makefile", O_RDONLY);
 
 	a = ft_read(fd, buffer, 15);
 	printf("buffer read: %s return value: %d errno: %d\n\nread:\n", buffer, a, errno);
+	memset(buffer, 0, 16);
 
 	a = read(42, buffer, 15);
-	printf("return value: %d errno: %d\n\nft_read:\n", a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\nft_read:\n", buffer, a, errno);
+	memset(buffer, 0, 16);
 	a = ft_read(42, buffer, 15);
-	printf("return value: %d errno: %d\n", a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\nread:\n", buffer, a, errno);
+	memset(buffer, 0, 16);
+
+	a = read(0, buffer, 15);
+	printf("buffer read: %s return value: %d errno: %d\n\nft_read:\n", buffer, a, errno);
+	memset(buffer, 0, 16);
+	a = ft_read(0, buffer, 15);
+	printf("buffer read: %s return value: %d errno: %d\n", buffer, a, errno);
+	memset(buffer, 0, 16);
 
 	close(fd);
 	return 0;
