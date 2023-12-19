@@ -5,8 +5,6 @@ ft_strlen:
 	push	rbp
 	mov	rbp,	rsp
 	mov	rax,	0
-	cmp	rdi,	0
-	je	return
 check_loop:
 	cmp	[rdi+rax],	byte 0
 	je	return
@@ -27,8 +25,6 @@ ft_strdup:
 	mov	rbp,	rsp
 	mov	rbx,	rdi
 	call	ft_strlen
-	cmp	rax,	0
-	je	return_error
 	mov	rdi,	rax
 	inc	rdi
 	call	malloc wrt ..plt

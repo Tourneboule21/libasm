@@ -2,6 +2,8 @@
 
 NAME	= libasm.a
 
+DBFLAGS	= -g
+
 CC	=	nasm
 
 LIB	=	ar rcs
@@ -11,7 +13,8 @@ SRC	=	ft_write.s \
 		ft_strlen.s \
 		ft_strcpy.s \
 		ft_strcmp.s \
-		ft_strdup.s
+		ft_strdup.s \
+		ft_atoi_base.s
 
 TARGET	=	elf64
 
@@ -27,7 +30,7 @@ $(NAME): $(OBJS)
 
 $(BUILDIR)/%.o: %.s Makefile
 	@mkdir -p $(BUILDIR)
-	$(CC) -f $(TARGET) $< -o $@
+	$(CC) $(DBFLAGS) -f $(TARGET) $< -o $@
 
 clean:
 	rm -rf $(BUILDIR)

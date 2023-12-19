@@ -118,8 +118,22 @@ int main()
 
 	printf("before dup(address: %p)\n", str);
 	str = ft_strdup("Salut");
+	printf("after dup(address: %p, value: %s)\n\n\033[0m\033[32mstrdup:\033[0m\033[37m\n", str, str);
+	free(str);
+	str = NULL;
+
+	printf("before dup(address: %p)\n", str);
+	str = strdup("");
+	printf("after dup(address: %p, value: %s)\n\n\033[0m\033[32mft_strdup:\033[0m\033[37m\n", str, str);
+	free(str);
+	str = NULL;
+
+	printf("before dup(address: %p)\n", str);
+	str = ft_strdup("");
 	printf("after dup(address: %p, value: %s)\n", str, str);
 	free(str);
+
+	printf("%d\n", ft_atoi_base("", "abcdef"));
 
 	return 0;
 }
