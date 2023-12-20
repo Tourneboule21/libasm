@@ -34,8 +34,8 @@ ft_strdup:
 check_loop_cpy:
 	cmp	[rbx+rcx],	byte 0
 	je	return_cpy
-	mov	rdx,	[rbx+rcx]
-	mov	[rax+rcx],	rdx
+	mov	dl,	byte [rbx+rcx]
+	mov	[rax+rcx],	dl
 	inc	rcx
 	jmp	check_loop_cpy
 return_cpy:

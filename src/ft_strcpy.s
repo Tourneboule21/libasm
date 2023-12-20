@@ -8,8 +8,8 @@ ft_strcpy:
 check_loop:
 	cmp	[rsi+rcx],	byte 0
 	je	return
-	mov	rdx,	[rsi+rcx]
-	mov	[rdi+rcx],	rdx
+	mov	dl,	byte [rsi+rcx]
+	mov	[rdi+rcx],	dl
 	inc	rcx
 	jmp	check_loop
 

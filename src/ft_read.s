@@ -13,7 +13,7 @@ ft_read:
 	call	__errno_location wrt ..plt
 	mov	rbx,	rax
 	pop	rax
-	mov	[rbx],	dword rax
+	mov	[rbx],	eax
 	mov	rax,	-1
 no_error:
 	mov	rsp,	rbp
