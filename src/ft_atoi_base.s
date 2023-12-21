@@ -137,6 +137,9 @@ ft_atoi_base:
 	jne	base_error
 	pop	rdi
 	call	_count_minus_symbol
+	push	rbx
+	mov	rbx,	rax
+	pop	rbx
 	mov	rsp,	rbp
 	pop	rbp
 	ret

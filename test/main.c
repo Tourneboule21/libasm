@@ -136,6 +136,7 @@ int main()
 	char	value[40] = "---++-++-+--hello";
 
 	printf("%d\n", ft_atoi_base(value, "abc"));
+	printf("%s\n", value);
 
 	return 0;
 }
