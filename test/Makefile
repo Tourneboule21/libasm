@@ -3,7 +3,7 @@
 NAME	= ../test.out
 
 CC	= gcc
-CFLAGS	= -Wall -Wextra -g #-fsanitize=address
+CFLAGS	= -Wall -Wextra -g -fsanitize=address
 LIB	=	../libasm.a
 
 DEFINES	=  

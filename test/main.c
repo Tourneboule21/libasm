@@ -133,9 +133,9 @@ int main()
 	// printf("after dup(address: %p, value: %s)\n", str, str);
 	// free(str);
 
-	char	value[20] = "    ---++-++-+-hello";
+	char	value[40] = "    ---++-++-+-hello";
 
-	printf("%d\n", ft_atoi_base(value, "abcdefghijklmnopqrstuvwxyz"));
+	printf("%d\n", ft_atoi_base(value, "ab"));
 
 	return 0;
 }
