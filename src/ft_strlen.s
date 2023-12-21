@@ -1,4 +1,7 @@
-global	ft_strlen
+section	.note.GNU-stack
+
+section	.text
+	global	ft_strlen
 
 ft_strlen:
 	push	rbp

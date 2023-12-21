@@ -3,11 +3,13 @@ section	.data
 	forbidden_base_char db " +-", 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x00
 	symbol_count db "+-", 0x00
 
+section	.note.GNU-stack
+
 section	.text
 	global	ft_atoi_base
 	;tell NASM to use RIP-relative address instead of absolute address 
-	default	rel
 	extern	ft_strlen
+	default	rel
 
 ; rdi: the string where searching the char
 ; rsi: the char to find
@@ -127,9 +129,65 @@ count_minus_symbol_return:
 	pop	rbp
 	ret
 
+; rdi: the char you want to get index in rsi base
+; rsi: the base for check
+; return the index of rdi in rsi or -1 if not in base
+_get_index_in_base:
+	push	rbp
+	mov	rbp,	rsp
+	mov	rax,	-1
+get_index_in_base_loop:
+	inc	rax
+	cmp	byte [rsi+rax],	dil
+	je	get_index_in_base_return
+	cmp	byte [rsi+rax],	0
+	jne	get_index_in_base_loop
+	mov	rax,	-1
+get_index_in_base_return:
+	mov	rsp,	rbp
+	pop	rbp
+	ret	
+
+; rdi: the string representation a the number to convert
+; rsi: the base of the number to convert
+; return the value in base 10 of rdi
+_calculate_from_base:
+	push	rbp
+	mov	rbp,	rsp
+	lea	rcx,	[rdi]
+	lea	rdi,	[rsi]
+	call	ft_strlen
+	mov	r8,	-1
+	mov	rdx,	rax
+	mov	r9,	0
+calculate_from_base_loop:
+	inc	r8
+	cmp	byte [rcx+r8],	0
+	je	calculate_from_base_return
+	mov	rdi,	[rcx+r8]
+	call	_get_index_in_base
+	cmp	rax,	-1
+	je	calculate_from_base_return
+	push	rax
+	push	rdx
+	mov	rax,	rdx
+	mul	r9
+	mov	r9,	rax
+	pop	rdx
+	pop	rax
+	; inc	rax
+	add	r9,	rax
+	jmp	calculate_from_base_loop
+calculate_from_base_return:
+	mov	rax,	r9
+	mov	rsp,	rbp
+	pop	rbp
+	ret
+
 ft_atoi_base:
 	push	rbp
 	mov	rbp,	rsp
+	push	rsi
 	push	rdi
 	mov	rdi,	rsi
 	call	_check_base
@@ -137,8 +195,27 @@ ft_atoi_base:
 	jne	base_error
 	pop	rdi
 	call	_count_minus_symbol
+	pop	rsi
 	push	rbx
+	; minus number in rbx
 	mov	rbx,	rax
+	call	_calculate_from_base
+	push	rax
+	mov	rax,	rbx
+	mov	rdx,	0
+	mov	rcx,	2
+	div	rcx
+	cmp	rdx,	0
+	jne	retur_negative
+	pop	rax
+	pop	rbx
+	mov	rsp,	rbp
+	pop	rbp
+	ret
+
+retur_negative:
+	pop	rax
+	neg	rax
 	pop	rbx
 	mov	rsp,	rbp
 	pop	rbp
