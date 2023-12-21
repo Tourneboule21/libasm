@@ -1,6 +1,7 @@
 section	.data
 	white_spaces db	" ", 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x00
 	forbidden_base_char db " +-", 0x07, 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x00
+	symbol_count db "+-", 0x00
 
 section	.text
 	global	ft_atoi_base
@@ -89,14 +90,55 @@ check_base_return:
 	pop	rbp
 	ret
 
+; rdi: the string where you want to count
+; return the number of minus symbol in rdi
+_count_minus_symbol:
+	push	rbp
+	mov	rbp,	rsp
+	mov	sil,	'-'
+	mov	rcx,	-1
+	mov	rdx,	-1
+count_minus_symbol_loop_inc:
+	inc	rdx
+count_minus_symbol_loop:
+	inc	rcx
+	cmp	byte [rdi+rcx],	0
+	je	count_minus_symbol_return
+	;;; stop searching if the current sign is not + or -
+	push	rdi
+	push	rsi
+	push	rdx
+	mov	sil,	byte [rdi+rcx]
+	lea	rdi,	symbol_count
+	call	_strchr
+	pop	rdx
+	pop	rsi
+	pop	rdi
+	cmp	rax,	0
+	je	count_minus_symbol_return
+	;;;
+	cmp	byte [rdi+rcx], sil
+	jne	count_minus_symbol_loop
+	jmp	count_minus_symbol_loop_inc
+count_minus_symbol_return:
+	mov	rax,	rdx
+	mov	rsp,	rbp
+	pop	rbp
+	ret
+
 ft_atoi_base:
 	push	rbp
 	mov	rbp,	rsp
+	push	rdi
 	mov	rdi,	rsi
 	call	_check_base
 	cmp	rax,	0
 	jne	base_error
-	inc	rax
+	pop	rdi
+	push	rdi
+	call	_count_minus_symbol
+	pop	rdi
+	; inc	rax
 	mov	rsp,	rbp
 	pop	rbp
 	ret
