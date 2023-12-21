@@ -94,6 +94,15 @@ ft_atoi_base:
 	mov	rbp,	rsp
 	mov	rdi,	rsi
 	call	_check_base
+	cmp	rax,	0
+	jne	base_error
+	inc	rax
+	mov	rsp,	rbp
+	pop	rbp
+	ret
+
+base_error:
+	mov	rax,	0
 	mov	rsp,	rbp
 	pop	rbp
 	ret
