@@ -121,6 +121,7 @@ count_minus_symbol_loop:
 	jne	count_minus_symbol_loop
 	jmp	count_minus_symbol_loop_inc
 count_minus_symbol_return:
+	lea	rdi,	[rdi+rcx]
 	mov	rax,	rdx
 	mov	rsp,	rbp
 	pop	rbp
@@ -135,10 +136,7 @@ ft_atoi_base:
 	cmp	rax,	0
 	jne	base_error
 	pop	rdi
-	push	rdi
 	call	_count_minus_symbol
-	pop	rdi
-	; inc	rax
 	mov	rsp,	rbp
 	pop	rbp
 	ret
