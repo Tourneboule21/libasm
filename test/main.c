@@ -35,7 +35,7 @@ int main()
 	fd = open("Makefile", O_RDONLY);
 
 	a = ft_read(fd, buffer, 15);
-	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mread:\033[0m\033[37m\n", buffer, a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mft_read:\033[0m\033[37m\n", buffer, a, errno);
 	errno = 0;
 	memset(buffer, 0, 16);
 
@@ -44,7 +44,7 @@ int main()
 	errno = 0;
 	memset(buffer, 0, 16);
 	a = read(42, buffer, 15);
-	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mft_read:\033[0m\033[37m\n", buffer, a, errno);
+	printf("buffer read: %s return value: %d errno: %d\n\n\033[0m\033[32mread:\033[0m\033[37m\n", buffer, a, errno);
 	errno = 0;
 	memset(buffer, 0, 16);
 
@@ -191,8 +191,6 @@ int main()
 		start = start->next;
 	}
 	printf("\033[1m\033[34mList size:\033[0m\033[37m %d\n-------------------------------\n", ft_list_size(begin));
-
-
 
 	start = begin;
 	while (start)
