@@ -14,7 +14,8 @@ SRC	=	ft_strcpy.s \
 		ft_read.s \
 		ft_strcmp.s \
 		ft_strdup.s \
-		ft_atoi_base.s
+		ft_atoi_base.s \
+		ft_list_push_front.s
 
 TARGET	=	elf64
 

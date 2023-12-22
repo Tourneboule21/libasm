@@ -154,7 +154,51 @@ int main()
 
 	printf("input value: %s, base: %s\nresult: %d\n\n\033[0m\033[32mft_atoi_base:\033[0m\033[37m\n", hex_value, repeat_base, ft_atoi_base(bad_value_inside_number, repeat_base));
 	printf("input value: %s, base: %s\nresult: %d\n\n\033[0m\033[32mft_atoi_base:\033[0m\033[37m\n", space_before_number, "0123456789abcdef", ft_atoi_base(space_before_number, "0123456789abcdef"));
-	printf("input value: %s, base: %s\nresult: %d\n", incorrect_char_fisrt, "0123456789abcdef", ft_atoi_base(incorrect_char_fisrt, "0123456789abcdef"));
+	printf("input value: %s, base: %s\nresult: %d\n\n\033[0m\033[32mft_list_push_front:\033[0m\033[37m\n", incorrect_char_fisrt, "0123456789abcdef", ft_atoi_base(incorrect_char_fisrt, "0123456789abcdef"));
+
+	int	data1 = 42;
+	int	data2 = 53;
+	t_list	*begin = malloc(sizeof(t_list));
+	begin->next = NULL;
+	begin->data = &data1;
+
+	begin->next = malloc(sizeof(t_list));
+	begin->next->next = NULL;
+	begin->next->data = &data2;
+
+	t_list	*start = begin;
+	printf("Before push:\n-------------------------------\n");
+	int	i = 0;
+	while(start)
+	{
+		printf("index: %d value: %d\n", i, *(int*)start->data);
+		i++;
+		start = start->next;
+	}
+	printf("-------------------------------\n");
+
+	int data = 100;
+	ft_list_push_front(&begin, &data);
+	printf("Push %d\n", data);
+
+	start = begin;
+	printf("After push:\n-------------------------------\n");
+	i = 0;
+	while(start)
+	{
+		printf("index: %d value: %d\n", i, *(int*)start->data);
+		i++;
+		start = start->next;
+	}
+	printf("-------------------------------\n");
+
+	start = begin;
+	while (start)
+	{
+		start = begin->next;
+		free (begin);
+		begin = start;
+	}
 
 	return 0;
 }
