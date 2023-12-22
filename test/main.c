@@ -133,9 +133,14 @@ int main()
 	// printf("after dup(address: %p, value: %s)\n", str, str);
 	// free(str);
 
-	// char	value[40] = "---++-++-+--hello";
+	char	binary_value[67] = "             \n\n\t           --+++-++-100010001111000111110100111011";
+	char	hex_value[18] = "--+++-++-223c7d3b";
+	char	test[10] = "Salut";
 
-	printf("%d\n", ft_atoi_base("--+++-++1001", "01"));
+	printf("%d\n", ft_atoi_base(binary_value, "01"));
+	printf("%d\n", ft_atoi_base(hex_value, "0123456789abcdef"));
+
+	printf("%s\n%s\n%s\n", binary_value, hex_value, test);
 
 	return 0;
 }

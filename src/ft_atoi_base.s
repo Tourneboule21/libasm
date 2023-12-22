@@ -175,7 +175,6 @@ calculate_from_base_loop:
 	mov	r9,	rax
 	pop	rdx
 	pop	rax
-	; inc	rax
 	add	r9,	rax
 	jmp	calculate_from_base_loop
 calculate_from_base_return:
@@ -184,9 +183,31 @@ calculate_from_base_return:
 	pop	rbp
 	ret
 
+; rdi: the string where you want to skip the beginning white spaces
+_skip_white_spaces:
+	push	rbp
+	mov	rbp,	rsp
+	lea	rcx,	[rdi]
+	lea	rdi,	white_spaces
+skip_white_spaces_loop:
+	mov	sil,	byte [rcx]
+	call	_strchr
+	cmp	rax,	0
+	je	skip_white_spaces_return
+	inc	rcx
+	jmp	skip_white_spaces_loop
+skip_white_spaces_return:
+	lea	rdi,	[rcx]
+	mov	rsp,	rbp
+	pop	rbp
+	ret
+
 ft_atoi_base:
 	push	rbp
 	mov	rbp,	rsp
+	push	rsi
+	call	_skip_white_spaces
+	pop	rsi
 	push	rsi
 	push	rdi
 	mov	rdi,	rsi
@@ -197,8 +218,7 @@ ft_atoi_base:
 	call	_count_minus_symbol
 	pop	rsi
 	push	rbx
-	; minus number in rbx
-	mov	rbx,	rax
+	mov	rbx,	rax	; minus number in rbx
 	call	_calculate_from_base
 	push	rax
 	mov	rax,	rbx
