@@ -3,6 +3,7 @@ global	ft_strcmp
 ft_strcmp:
 	push	rbp
 	mov	rbp,	rsp
+	push	rbx
 	mov	rbx,	0
 check_loop:
 	mov	rax,	[rdi+rbx]
@@ -14,6 +15,7 @@ check_loop:
 	inc	rbx
 	jmp	check_loop
 end_loop:
+	pop	rbx
 	mov	rsp,	rbp
 	pop	rbp
 	ret

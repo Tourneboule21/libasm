@@ -184,6 +184,9 @@ calculate_from_base_return:
 	ret
 
 ; rdi: the string where you want to skip the beginning white spaces
+; ------------------------------------------------------------------------------------------------------
+; WARNING: this function change rdi and don't return the start of the string without white spaces in rax
+; ------------------------------------------------------------------------------------------------------
 _skip_white_spaces:
 	push	rbp
 	mov	rbp,	rsp

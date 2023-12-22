@@ -1,29 +1,12 @@
 global	ft_strdup
 extern	malloc
-
-ft_strlen:
-	push	rbp
-	mov	rbp,	rsp
-	mov	rax,	0
-check_loop:
-	cmp	[rdi+rax],	byte 0
-	je	return
-	inc	rax
-	jmp	check_loop
-return:
-	mov	rsp,	rbp
-	pop	rbp
-	ret
-
-return_error:
-	mov	rsp,	rbp
-	pop	rbp
-	ret
+extern	ft_strlen
 
 ft_strdup:
 	push	rbp
 	mov	rbp,	rsp
-	mov	rbx,	rdi
+	push	rbx
+	lea	rbx,	[rdi]
 	call	ft_strlen
 	mov	rdi,	rax
 	inc	rdi
@@ -39,7 +22,13 @@ check_loop_cpy:
 	inc	rcx
 	jmp	check_loop_cpy
 return_cpy:
+	pop	rbx
 	mov	[rax+rcx],	byte 0
+	mov	rsp,	rbp
+	pop	rbp
+	ret
+return_error:
+	pop	rbx
 	mov	rsp,	rbp
 	pop	rbp
 	ret
