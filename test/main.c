@@ -175,7 +175,7 @@ int main()
 		i++;
 		start = start->next;
 	}
-	printf("-------------------------------\n");
+	printf("\033[1m\033[34mList size:\033[0m\033[37m %d\n-------------------------------\n", ft_list_size(begin));
 
 	int data = 100;
 	ft_list_push_front(&begin, &data);
@@ -190,7 +190,9 @@ int main()
 		i++;
 		start = start->next;
 	}
-	printf("-------------------------------\n");
+	printf("\033[1m\033[34mList size:\033[0m\033[37m %d\n-------------------------------\n", ft_list_size(begin));
+
+
 
 	start = begin;
 	while (start)
