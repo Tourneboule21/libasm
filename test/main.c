@@ -5,6 +5,13 @@
 #include <string.h>
 #include <stdlib.h>
 
+int	test(int a, int b)
+{
+	printf("%d VS %d\n", a, b);
+	printf("%d\n", a > b);
+	return a > b;
+}
+
 int main()
 {
 	printf("\033[0m\033[32mwrite:\033[0m\033[37m\n");
@@ -190,8 +197,32 @@ int main()
 		i++;
 		start = start->next;
 	}
+	printf("\033[1m\033[34mList size:\033[0m\033[37m %d\n-------------------------------\n\n\033[0m\033[32mft_list_sort:\033[0m\033[37m\n", ft_list_size(begin));
+
+	start = begin;
+	printf("Before sort:\n-------------------------------\n");
+	i = 0;
+	while(start)
+	{
+		printf("index: %d value: %d\n", i, *(int*)start->data);
+		i++;
+		start = start->next;
+	}
 	printf("\033[1m\033[34mList size:\033[0m\033[37m %d\n-------------------------------\n", ft_list_size(begin));
 
+	ft_list_sort(&begin, test);
+
+	start = begin;
+	printf("After sort:\n-------------------------------\n");
+	i = 0;
+	while(start)
+	{
+		printf("index: %d value: %d\n", i, *(int*)start->data);
+		i++;
+		start = start->next;
+	}
+	printf("\033[1m\033[34mList size:\033[0m\033[37m %d\n-------------------------------\n", ft_list_size(begin));
+	
 	start = begin;
 	while (start)
 	{
@@ -199,6 +230,7 @@ int main()
 		free (begin);
 		begin = start;
 	}
+
 
 	return 0;
 }
