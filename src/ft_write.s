@@ -1,5 +1,8 @@
-global	ft_write
-extern	__errno_location
+section	.note.GNU-stack
+
+section .text
+	global	ft_write
+	extern	__errno_location
 
 ft_write:
 	push	rbp

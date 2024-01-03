@@ -1,5 +1,8 @@
-global	ft_read
-extern	__errno_location
+section	.note.GNU-stack
+
+section .text
+	global	ft_read
+	extern	__errno_location
 
 ft_read:
 	push	rbp

@@ -1,4 +1,7 @@
-global	ft_strcmp
+section	.note.GNU-stack
+
+section .text
+	global	ft_strcmp
 
 ft_strcmp:
 	push	rbp

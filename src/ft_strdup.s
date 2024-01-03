@@ -1,6 +1,9 @@
-global	ft_strdup
-extern	malloc
-extern	ft_strlen
+section	.note.GNU-stack
+
+section .text
+	global	ft_strdup
+	extern	malloc
+	extern	ft_strlen
 
 ft_strdup:
 	push	rbp

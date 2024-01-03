@@ -1,4 +1,7 @@
-global	ft_strcpy
+section	.note.GNU-stack
+
+section .text
+	global	ft_strcpy
 
 ft_strcpy:
 	push	rbp
